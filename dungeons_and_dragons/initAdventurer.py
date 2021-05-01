@@ -1,12 +1,17 @@
 from random import randrange
+import json
 from character import Character
 
 #Start creating a Dungeon and Dragon Character
 def main():
     newCharacter = Character(generateName(), generateRace(), generateClass())
-
+    characterObject = {
+        "name": newCharacter.getName(),
+        "race": newCharacter.getRace(),
+        "class": newCharacter.getClass()
+    }
     f = open('character.txt', 'w')
-    f.write('Name: ' + newCharacter.getName() + '\n' + 'Race: ' + newCharacter.getRace() + '\n' + 'Class: ' + newCharacter.getClass())
+    json.dump(characterObject, f)
     f.close()
 
 def generateName():
